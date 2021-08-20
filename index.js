@@ -156,7 +156,6 @@ const checkInputs = ({ input, requirement }) => {
     };
     const resp = checking({ input, requiredFields })
     if (resp) return resp;
-    return true;
 }
 
 module.exports = checkInputs;
