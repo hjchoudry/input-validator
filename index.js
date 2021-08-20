@@ -36,24 +36,25 @@ const validInput = ({ value, key, type, requiredFields }) => {
     if (types.includes(type)) {
         if ((type === 'string') && (regex && regex.test(value)))
             return `Invalid value for ${key} field!`;
-        const val = fieldProps[key] ? fieldProps[key] : null;
-        if (val) {
-            if (val.type && val.type != type) return { [key]: `Type ${val.type} is required but got ${type}` }
-            if ((val.minLength) && type === 'string') {
-                if (value.length < val.minLength) return { [key]: `Minium ${val.minLength} characters required but got ${value.length}.` }
+        const fieldVal = fieldProps[key] ? fieldProps[key] : null;
+        if (fieldVal) {
+            if (fieldVal.type && fieldVal.type != type) return { [key]: `Type ${fieldVal.type} is required but got ${type}` }
+            if ((fieldVal.minLength) && type === 'string') {
+                if (value.length < fieldVal.minLength)
+                    return { [key]: `${key} should be minimum ${fieldVal.minLength} characters!` }
             }
-            if (val.maxLength && type === 'string')
-                if (value.length > val.maxLength) return { [key]: `Maximum ${val.maxLength} characters allowed but got ${value.length}.` }
-            if (val.regex) {
-                if (!val.regex.test(value)) return { [key]: `${key} is not a valid!` }
+            if (fieldVal.maxLength && type === 'string')
+                if (value.length > fieldVal.maxLength) return { [key]: `${key} should be less than ${fieldVal.maxLength} characters!` }
+            if (fieldVal.regex) {
+                if (!fieldVal.regex.test(value)) return { [key]: `${key} is not a valid!` }
             }
-            if (val.required) {
+            if (fieldVal.required) {
                 if (!value || (type === 'string' && value.trim().length < 1)) {
-                    if (val.required.length) return { [key]: val.required }
+                    if (fieldVal.required.length) return { [key]: fieldVal.required }
                     else return { [key]: `${key} is required! ` }
                 }
                 else if (!value.length && type === 'object') {
-                    if (val.required.length) return { [key]: val.required.length }
+                    if (fieldVal.required.length) return { [key]: fieldVal.required.length }
                     else return { [key]: `${key} is required! ` }
                 }
             }

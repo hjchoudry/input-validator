@@ -1,13 +1,6 @@
 const checkInputs = require('./index')
 const input = {
-    username: "",
-    password: "",
-    key: {
-        user: "",
-        email: ""
-    }
+    username: "u1",
 }
-
-const requirement = ["email", "password", "username"]
-
+const requirement = ["username"]
 console.log(checkInputs({ input, requirement }))

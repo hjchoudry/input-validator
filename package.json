@@ -1,6 +1,6 @@
 {
   "name": "input-checker-validator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "This function take input valid all fields with give requirements ",
   "main": "index.js",
   "scripts": {
