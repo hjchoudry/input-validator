@@ -1,6 +1,6 @@
 {
   "name": "input-checker-validator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This function take input valid all fields with give requirements ",
   "main": "index.js",
   "scripts": {
@@ -14,12 +14,7 @@
   "keywords": [
     "input",
     "validator",
-    "validation",
-    "validation",
-    "validator",
-    "sanitizer",
-    "joi",
-    "whitelist"
+    "validation"
   ],
   "author": "Husnain Javed",
   "license": "ISC",
