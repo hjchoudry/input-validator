@@ -1,63 +1,55 @@
-# input-validator
+# Input validator
+## This function checks input value and match the given requirements
 
-# This function checks input value,
+## Installation
+Use the package manager [npm](https://docs.npmjs.com/getting-started) to install Input check validator.
 
-# input should be a object;
+```bash
+npm install input-checker-validator
+```
+## usage 
+```javascript 
+import inputValidator from 'input-checker-validator';
 
-const input = {
-username: "",
-password: "",
-key: {
-user: "",
-email: ""
-}
-}
+// Yours Input in form of object
+const input = {};
+// your requirements  
+// you can enter Array of required  feilds,
+const requirement = ["username","password"] 
 
-# requirement can be array object, string
-
-# requirement as array of strings only
-
-const requirement = ["email", "password", "username"]
-
-# requirement as array of object and strings
-
-const requirement = [
-"password",
-{
-name: "username"
-required: true,
-minLength: 5,
-maxLength: 10,
-regex: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
-type: "string"
-},
-]
-
-# requirement as object with object and array
-
+// Or Array of object with these feilds 
+const requirement = ["username",
+    {
+      name: "password" //name of feild 
+      required: true, // boolean or string
+      minLength: 5, // minimum length
+      maxLength: 10, // maximum length
+      regex: /^([A-Za-z0-9_\-\.])$/, regex
+      type: "string" // one of these number, string, boolean, null, undefined, object, symbol
+    }
+] 
+// Or Object 
 const requirement = {
-defaultRegex: /\(_.\^_.\$_._.\(/i;
-fields:[
-"password",
-{
-name: "password"
-required: false,
+defaultRegex:/^([A-Za-z0-9_\-\.])$/, //check on each value required or not
+feilds:[ "username",
+        {
+          name: "password" //name of feild 
+          required: true, // boolean or string
+          minLength: 5, // minimum length
+          maxLength: 10, // maximum length
+          regex: /^([A-Za-z0-9_\-\.])$/, regex
+          type: "string" // one of these number, string, boolean, null, undefined, object, symbol
+       }
+      ]
 }
-]
-}
+// calling function 
+const respose = inputValidator({ input, requirement})
 
-# requirement as object with these properties only
+// if got error return 
+{ feild-name: error vaule }
 
-# name string only
+// if no error return null;
 
-# required string and boolean only
-
-# minLength number only
-
-# maxLength number only
-
-# regex regex only
-
-# type can be one of the following:
-
-'number', 'string', 'boolean', 'null', 'undefined', 'object', 'symbol';
+```
+## License
+ISC
