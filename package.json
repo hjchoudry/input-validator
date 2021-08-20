@@ -1,0 +1,25 @@
+{
+  "name": "input-validator",
+  "version": "1.0.0",
+  "description": "This function take input valid all fields with give requirements ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjchoudry/input-validator.git"
+  },
+  "keywords": [
+    "input",
+    "validator",
+    "validation"
+  ],
+  "author": "Husnain Javed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjchoudry/input-validator/issues"
+  },
+  "homepage": "https://github.com/hjchoudry/input-validator#readme"
+}

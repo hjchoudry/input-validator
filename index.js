@@ -76,6 +76,7 @@ const checking = ({ input, requiredFields }) => {
             if (res) return res
         }
     }
+    return false
 };
 
 const fieldValidator = ({ fieldValue, requiredFields }) => {
@@ -135,7 +136,7 @@ const requirementValidator = ({ requirement, requiredFields }) => {
     };
     return false;
 };
-
+let input, requirement;
 const checkInputs = ({ input, requirement }) => {
     if (typeof input != 'object' || !input) return "Input of type object is required";
     if (typeof requirement != 'object') return "Requirements must be an object or array!";
@@ -158,4 +159,4 @@ const checkInputs = ({ input, requirement }) => {
     return true;
 }
 
-return checkInputs({ input, requirement })
+module.exports = checkInputs;
