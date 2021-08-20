@@ -35,7 +35,7 @@ const validInput = ({ value, key, type, requiredFields }) => {
     const fieldProps = requiredFields.requirements;
     if (types.includes(type)) {
         if ((type === 'string') && (regex && regex.test(value)))
-            return `Invalid value for ${key} field!`;
+            return { [key]: `${key} value is invalid` };
         const fieldVal = fieldProps[key] ? fieldProps[key] : null;
         if (fieldVal) {
             if (fieldVal.type && fieldVal.type != type) return { [key]: `Type ${fieldVal.type} is required but got ${type}` }
@@ -59,11 +59,11 @@ const validInput = ({ value, key, type, requiredFields }) => {
                 }
             }
         }
-    } else return `Invalid type ${type} for ${key} field!`;
+    } else return { [key]: `Type ${type} of ${key} is invalid!` };
     return false;
 };
 const checking = ({ input, requiredFields }) => {
-    if (!input) return "Input of type object is required";
+    if (!input) return { input: "Input of type object is required" };
     for (const [key, value] of Object.entries(input)) {
         const type = typeof (value)
         if (type === 'object') {
@@ -87,16 +87,16 @@ const fieldValidator = ({ fieldValue, requiredFields }) => {
         const dataTypes = ['number', 'string', 'boolean', 'null', 'undefined', 'object', 'symbol'];
         for (const [key, value] of Object.entries(fieldValue)) {
             if (!types.includes(key)) {
-                return `Invalid field ${key}, only these ${types} allowed!`;
+                return { [key]: `Invalid field ${key}, only these ${types} allowed!` };
             } else if (key === 'name' && (!value || value.length < 1 || typeof value != 'string')) return 'Name for field is required';
             else if (!dataTypes.includes(typeof value)) {
-                return `Invalid type ${typeof value} for ${key}`;
+                return { [key]: `Invalid type ${typeof value} for ${key}` };
             } else if (key === 'required' && !['boolean', 'string'].includes(typeof value)) {
-                return `Invalid type for ${key}, only string or boolean values allowed!`;
+                return { [key]: `Invalid type for ${key}, only string or boolean values allowed!` };
             } else if (['minLength', 'maxLength'].includes(key) && typeof value != 'number') {
-                return `Invalid type for ${key}, only numbers allowed!`;
+                return { [key]: `Invalid type for ${key}, only numbers allowed!` };
             } else if ((key === 'type') && !dataTypes.includes(value)) {
-                return `only these ${dataTypes} data types are allowed!`;
+                return { [key]: `only these ${dataTypes} data types are allowed!` };
             }
         };
         if (fieldValue.required) {
@@ -139,13 +139,11 @@ const requirementValidator = ({ requirement, requiredFields }) => {
 };
 let input, requirement;
 const checkInputs = ({ input, requirement }) => {
-    if (typeof input != 'object' || !input) return "Input of type object is required";
-    if (typeof requirement != 'object') return "Requirements must be an object or array!";
-
+    if (typeof input != 'object' || !input) return { input: "Input of type object is required" };
+    if (typeof requirement != 'object') return { requirement: "Requirements must be an object or array!" };
     const regex = requirement && requirement.defaultRegex ?
         requirement.defaultRegex : /\(*.\^*.\$*.*.\(/i;
-    if (regex && typeof regex != 'object') return "Regex is invalid!";
-
+    if (regex && typeof regex != 'object') return { defaultRegex: "Default Regex is invalid!" };
     let requiredFields = { fields: [], requirements: {}, regex: regex };
     if (requirement) {
         const response = requirementValidator({ requirement, requiredFields })
