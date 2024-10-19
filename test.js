@@ -1,6 +1,8 @@
-const checkInputs = require('./index')
+import checkInputs from './index.js'
+
 const input = {
-    username: "u1",
+    username: "k",
+    name: ''
 }
-const requirement = ["username"]
+const requirement = ["username", "name"]
 console.log(checkInputs({ input, requirement }))

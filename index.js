@@ -212,4 +212,4 @@ const checkInputs = ({ input, requirement }) => {
   if (resp) return resp;
 };
 
-module.exports = checkInputs;
+export default checkInputs;

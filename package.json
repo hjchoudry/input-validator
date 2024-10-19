@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "This function take input valid all fields with give requirements ",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "node test"
